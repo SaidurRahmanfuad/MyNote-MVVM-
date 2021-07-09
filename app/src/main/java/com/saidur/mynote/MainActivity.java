@@ -1,7 +1,9 @@
 package com.saidur.mynote;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.app.Dialog;
 import android.graphics.Color;
@@ -17,10 +19,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.saidur.mynote.databinding.ActivityMainBinding;
 import com.saidur.mynote.entity.Notes;
+import com.saidur.mynote.view.adapters.AllnoteAdapter;
 import com.saidur.mynote.viewmodel.NotesViewModel;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
@@ -34,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
     NotesViewModel notesViewModel;
     String priority = "1";
 
+    AllnoteAdapter ana;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +52,24 @@ public class MainActivity extends AppCompatActivity {
         amb.addnotebtn.setOnClickListener(v -> {
             dialog.show();
         });
+
+        notesViewModel.getAllNotes.observe(MainActivity.this, new Observer<List<Notes>>() {
+            @Override
+            public void onChanged(List<Notes> notes) {
+              if(notes!=null)
+              {
+                  amb.allnote.setLayoutManager(new GridLayoutManager(MainActivity.this,2));
+                  ana =new AllnoteAdapter(MainActivity.this);
+                  ana.setAllNotes(notes);
+                  amb.allnote.setAdapter(ana);
+
+
+              }else {
+                  Toast.makeText(MainActivity.this, "No note found", Toast.LENGTH_SHORT).show();
+              }
+            }
+        });
+
     }
 
     private void initpopup() {
@@ -62,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         pri_red = dialog.findViewById(R.id.pred);
         donebtn = dialog.findViewById(R.id.donebtn);
         clear_txt = dialog.findViewById(R.id.clear_txt);
-        date = new SimpleDateFormat("MM dd YYYY", Locale.getDefault()).format(new Date());
+        date = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault()).format(new Date());
 
         donebtn.setOnClickListener(v -> {
             subtitle = subttl.getText().toString();
@@ -77,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
             no.priority = priority;
             notesViewModel.insertNote(no);
             Toast.makeText(this, "Note Created!!", Toast.LENGTH_SHORT).show();
+
             dialog.dismiss();
         });
         clear_txt.setOnClickListener(v -> {
@@ -103,9 +128,5 @@ public class MainActivity extends AppCompatActivity {
             pri_yello.setImageResource(0);
         });
 
-   /*     //popAddQty.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        popAddQty.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
-        popAddQty.getWindow().setLayout(Toolbar.LayoutParams.MATCH_PARENT, Toolbar.LayoutParams.WRAP_CONTENT);
-        popAddQty.getWindow().getAttributes().gravity = Gravity.CENTER;*/
     }
 }

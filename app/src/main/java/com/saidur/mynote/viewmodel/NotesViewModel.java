@@ -1,6 +1,7 @@
 package com.saidur.mynote.viewmodel;
 
 import android.app.Application;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -13,9 +14,9 @@ import com.saidur.mynote.repository.NoteRepo;
 import java.util.List;
 
 public class NotesViewModel extends AndroidViewModel {
-    NoteRepo noteRepo;
+    public NoteRepo noteRepo;
 
-    LiveData<List<Notes>> getAllNotes;
+    public LiveData<List<Notes>> getAllNotes;
     public NotesViewModel(@NonNull Application application) {
         super(application);
          noteRepo=new NoteRepo(application);
