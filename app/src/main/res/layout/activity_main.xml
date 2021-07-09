@@ -7,7 +7,92 @@
     android:background="@color/colorshadow2"
     tools:context=".MainActivity">
 
-
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/filterlay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="10dp">
+        <TextView
+            android:id="@+id/filter"
+            android:elevation="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:drawableStart="@drawable/ic_filter"
+            android:background="@drawable/circle_red"
+           />
+        <TextView
+            android:id="@+id/nofilter"
+            android:elevation="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="4dp"
+            android:padding="4dp"
+            android:text="No Filter"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:fontFamily="@font/roboto_light"
+            android:background="@drawable/shape_itemfilterno"
+            />
+        <TextView
+            android:id="@+id/high"
+            android:elevation="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:padding="4dp"
+            android:text="High"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:fontFamily="@font/roboto_light"
+            android:background="@drawable/shape_itemfilterhigh"
+            />
+        <TextView
+            android:id="@+id/mid"
+            android:elevation="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:text="Mid"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:fontFamily="@font/roboto_light"
+            android:background="@drawable/shape_itemfiltermid"
+            />
+        <TextView
+            android:id="@+id/low"
+            android:elevation="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:text="Low"
+            android:layout_gravity="center"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/roboto_light"
+            android:background="@drawable/shape_itemfilterlow"
+            />
+    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/allnote"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/addnotebtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filterlay"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addnotebtn"
@@ -21,15 +106,6 @@
         android:backgroundTint="@color/maincolor"
         android:src="@drawable/ic_add"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/allnote"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/addnotebtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

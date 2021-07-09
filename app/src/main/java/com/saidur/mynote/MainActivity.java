@@ -71,6 +71,56 @@ public class MainActivity extends AppCompatActivity implements DeleteListener {
             }
         });
 
+        filter();
+    }
+
+    private void filter() {
+        amb.nofilter.setBackgroundResource(R.drawable.shape_itemfilter_selected);
+        amb.nofilter.setOnClickListener(v -> {
+            amb.nofilter.setBackgroundResource(R.drawable.shape_itemfilter_selected);
+            amb.high.setBackgroundResource(R.drawable.shape_itemfilterhigh);
+            amb.high.setTextColor(Color.WHITE);
+            amb.mid.setBackgroundResource(R.drawable.shape_itemfiltermid);
+            amb.mid.setTextColor(Color.WHITE);
+            amb.low.setBackgroundResource(R.drawable.shape_itemfilterlow);
+            amb.low.setTextColor(Color.WHITE);
+        });
+        amb.high.setOnClickListener(v -> {
+            amb.high.setBackgroundResource(R.drawable.shape_itemfilter_selected);
+            amb.high.setTextColor(Color.BLACK);
+
+            amb.mid.setBackgroundResource(R.drawable.shape_itemfiltermid);
+            amb.mid.setTextColor(Color.WHITE);
+
+            amb.low.setBackgroundResource(R.drawable.shape_itemfilterlow);
+            amb.low.setTextColor(Color.WHITE);
+
+            amb.nofilter.setBackgroundResource(R.drawable.shape_itemfilterno);
+        });
+        amb.mid.setOnClickListener(v -> {
+            amb.mid.setBackgroundResource(R.drawable.shape_itemfilter_selected);
+            amb.mid.setTextColor(Color.BLACK);
+
+            amb.low.setBackgroundResource(R.drawable.shape_itemfilterlow);
+            amb.low.setTextColor(Color.WHITE);
+
+            amb.high.setBackgroundResource(R.drawable.shape_itemfilterhigh);
+            amb.high.setTextColor(Color.WHITE);
+            amb.nofilter.setBackgroundResource(R.drawable.shape_itemfilterno);
+
+        });
+        amb.low.setOnClickListener(v -> {
+            amb.low.setBackgroundResource(R.drawable.shape_itemfilter_selected);
+            amb.low.setTextColor(Color.BLACK);
+
+            amb.mid.setBackgroundResource(R.drawable.shape_itemfiltermid);
+            amb.mid.setTextColor(Color.WHITE);
+
+            amb.high.setBackgroundResource(R.drawable.shape_itemfilterhigh);
+            amb.high.setTextColor(Color.WHITE);
+            amb.nofilter.setBackgroundResource(R.drawable.shape_itemfilterno);
+
+        });
     }
 
     private void initpopup() {

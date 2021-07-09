@@ -24,4 +24,5 @@ public interface NotesDao {
 
     @Update
     void UpdateNote(Notes notes);
+
 }
