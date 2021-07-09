@@ -7,19 +7,19 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "Notes_table")
 public class Notes {
     @PrimaryKey(autoGenerate = true)
-    int id;
+    public int id;
     @ColumnInfo(name = "notes_title")
-    String notesTitle;
+    public String notesTitle;
     @ColumnInfo(name = "notes_subtitle")
-    String notesSubtitle;
+    public String notesSubtitle;
     @ColumnInfo(name = "notes_date")
-    String notesDate;
+    public String notesDate;
     @ColumnInfo(name = "notes_notes")
-    String notes;
+    public String notes;
     @ColumnInfo(name = "notes_priority")
-    String priority;
+    public String priority;
 
-    public int getId() {
+/*    public int getId() {
         return id;
     }
 
@@ -65,5 +65,5 @@ public class Notes {
 
     public void setPriority(String priority) {
         this.priority = priority;
-    }
+    }*/
 }

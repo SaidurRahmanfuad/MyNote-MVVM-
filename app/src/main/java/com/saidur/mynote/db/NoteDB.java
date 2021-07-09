@@ -24,6 +24,7 @@ public abstract class NoteDB extends RoomDatabase{
               instance=Room.databaseBuilder(c.getApplicationContext(),
                       NoteDB.class,tablename)
                       .fallbackToDestructiveMigration()
+                      .allowMainThreadQueries()
                       .build();
         }
         return instance;

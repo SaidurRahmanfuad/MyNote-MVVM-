@@ -22,15 +22,15 @@ public class NotesViewModel extends AndroidViewModel {
          getAllNotes=noteRepo.getAllnotes;
     }
 
-    void insertNote(Notes notes)
+    public void insertNote(Notes notes)
     {
         noteRepo.insertNotes(notes);
     }
-    void updateNote(Notes notes)
+   public void updateNote(Notes notes)
     {
         noteRepo.updateNotes(notes);
     }
-    void delNote(int ids)
+   public void delNote(int ids)
     {
         noteRepo.deleteNotes(ids);
     }
