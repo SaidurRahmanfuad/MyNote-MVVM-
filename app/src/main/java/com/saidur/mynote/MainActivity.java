@@ -19,6 +19,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.saidur.mynote.databinding.ActivityMainBinding;
 import com.saidur.mynote.entity.Notes;
+import com.saidur.mynote.view.DeleteListener;
 import com.saidur.mynote.view.adapters.AllnoteAdapter;
 import com.saidur.mynote.viewmodel.NotesViewModel;
 
@@ -27,7 +28,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements DeleteListener {
     ActivityMainBinding amb;
     Dialog dialog;
     FloatingActionButton donebtn;
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
               if(notes!=null)
               {
                   amb.allnote.setLayoutManager(new GridLayoutManager(MainActivity.this,2));
-                  ana =new AllnoteAdapter(MainActivity.this);
+                  ana =new AllnoteAdapter(MainActivity.this,MainActivity.this);
                   ana.setAllNotes(notes);
                   amb.allnote.setAdapter(ana);
 
@@ -128,5 +129,12 @@ public class MainActivity extends AppCompatActivity {
             pri_yello.setImageResource(0);
         });
 
+    }
+
+    @Override
+    public void DeleteItem(int pos,int id) {
+        notesViewModel.delNote(id);
+        ana.notifyItemRemoved(pos);
+        ana.notifyDataSetChanged();
     }
 }

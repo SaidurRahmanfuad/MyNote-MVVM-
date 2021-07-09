@@ -3,6 +3,7 @@ package com.saidur.mynote.view.adapters;
 import android.app.Application;
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +14,14 @@ import android.widget.Toast;
 import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.saidur.mynote.R;
 import com.saidur.mynote.entity.Notes;
+import com.saidur.mynote.view.DeleteListener;
 import com.saidur.mynote.viewmodel.NotesViewModel;
 
 import java.text.SimpleDateFormat;
@@ -30,14 +33,17 @@ import java.util.concurrent.atomic.AtomicReference;
 public class AllnoteAdapter extends RecyclerView.Adapter<AllnoteAdapter.Anvh> {
     List<Notes> noteList;
     Context c;
+    DeleteListener deleteListener;
     Application application;
 
-    public AllnoteAdapter(Context c) {
+    public AllnoteAdapter(Context c, DeleteListener deleteListener) {
         this.c = c;
+        this.deleteListener = deleteListener;
     }
 
     public void setAllNotes(List<Notes> noteList) {
         this.noteList = noteList;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -58,6 +64,7 @@ public class AllnoteAdapter extends RecyclerView.Adapter<AllnoteAdapter.Anvh> {
             holder.nnote.setText(notes.notes);
             holder.date.setText(notes.notesDate);
             final String pt = notes.priority;
+            //check priority
             switch (pt) {
                 case "1":
                     holder.priority.setBackgroundResource(R.drawable.circle_green);
@@ -70,9 +77,9 @@ public class AllnoteAdapter extends RecyclerView.Adapter<AllnoteAdapter.Anvh> {
                     break;
             }
 
+            Dialog d = new Dialog(c);
             holder.edit.setOnClickListener(v -> {
-                //for showing popup
-                Dialog d = new Dialog(c);
+                //for showing edit popup
                 d.setContentView(R.layout.layout_updatenote);
                 d.getWindow().setLayout(Toolbar.LayoutParams.MATCH_PARENT, Toolbar.LayoutParams.WRAP_CONTENT);
                 //declare all aspects of popup
@@ -124,7 +131,7 @@ public class AllnoteAdapter extends RecyclerView.Adapter<AllnoteAdapter.Anvh> {
                     upttl.setText("");
                     upwritenote.setText("");
                 });
-                holder.updpriority=pt;
+                holder.updpriority = pt;
                 uppri_green.setOnClickListener(v1 -> {
                     holder.updpriority = "1";
                     uppri_green.setImageResource(R.drawable.ic_done);
@@ -143,6 +150,7 @@ public class AllnoteAdapter extends RecyclerView.Adapter<AllnoteAdapter.Anvh> {
                     uppri_green.setImageResource(0);
                     uppri_yello.setImageResource(0);
                 });
+                //update note
                 updonebtn.setOnClickListener(v1 -> {
                     Notes no = new Notes();
                     no.id = notes.id;
@@ -158,6 +166,34 @@ public class AllnoteAdapter extends RecyclerView.Adapter<AllnoteAdapter.Anvh> {
 
                 d.show();
 
+            });
+
+            //for delete note
+            holder.delt.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    //for delete confirm notice
+                    d.setContentView(R.layout.layout_deletenotice);
+                    d.getWindow().setLayout(Toolbar.LayoutParams.MATCH_PARENT, Toolbar.LayoutParams.WRAP_CONTENT);
+                    //find the aspects
+                    TextView yes, no;
+                    yes = d.findViewById(R.id.yes);
+                    no = d.findViewById(R.id.no);
+                    d.show();
+
+                    //if want to delete
+                    yes.setOnClickListener(v1 -> {
+                        //hit delete interface--operation done in main activity
+                        deleteListener.DeleteItem(position, notes.id);
+                        d.dismiss();
+                    });
+                   //if don't want to delete
+                    no.setOnClickListener(v1 -> {
+                        d.dismiss();
+                    });
+
+                    return false;
+                }
             });
         }
 
@@ -175,8 +211,10 @@ public class AllnoteAdapter extends RecyclerView.Adapter<AllnoteAdapter.Anvh> {
 
     public class Anvh extends RecyclerView.ViewHolder {
         TextView ntitle, nsubtitle, nnote, date, edit;
+        CardView delt;
         View priority;
         String updpriority;
+
         public Anvh(@NonNull View v) {
             super(v);
             ntitle = v.findViewById(R.id.ttl);
@@ -185,6 +223,11 @@ public class AllnoteAdapter extends RecyclerView.Adapter<AllnoteAdapter.Anvh> {
             date = v.findViewById(R.id.date);
             edit = v.findViewById(R.id.edit);
             priority = v.findViewById(R.id.prioty);
+            delt = v.findViewById(R.id.delt);
+
+            this.delt.setClickable(true);
+            this.delt.setFocusable(true);
+            this.delt.setForeground(c.getDrawable(R.drawable.longclick));
         }
     }
 }
