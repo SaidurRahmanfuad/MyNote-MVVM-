@@ -14,10 +14,24 @@ public class NoteRepo {
     public NotesDao notesDao;
     public LiveData<List<Notes>> getAllnotes;
 
+    public LiveData<List<Notes>> getPrtywiseList;
+    public LiveData<List<Notes>> getDatewiseList;
+
+    public LiveData<List<Notes>> getHiList;
+    public LiveData<List<Notes>> getMidList;
+    public LiveData<List<Notes>> getLowList;
+
+
     public NoteRepo(Application application) {
         NoteDB noteDB=NoteDB.getDBinstance(application);
         notesDao=noteDB.notesDao();
         getAllnotes=notesDao.getAllNotes();
+        getPrtywiseList=notesDao.getSearchNotespriority("");
+        getDatewiseList=notesDao.getSearchNotesdate("");
+
+        getHiList=notesDao.getHinote(1);
+        getMidList=notesDao.getMidnote(2);
+        getLowList=notesDao.getLownote(3);
     }
 
     public void insertNotes(Notes notes)
@@ -33,5 +47,10 @@ public class NoteRepo {
     {
         notesDao.deleteNote(id);
     }
+
+   /* public void searpriorityNotes(String codes)
+    {
+        notesDao.getSearchNotespriority(codes);
+    }*/
 
 }

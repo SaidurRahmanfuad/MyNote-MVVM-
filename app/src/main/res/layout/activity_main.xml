@@ -8,104 +8,355 @@
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:id="@+id/filterlay"
+        android:id="@+id/filterdatelaymain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_margin="10dp">
-        <TextView
-            android:id="@+id/filter"
-            android:elevation="4dp"
-            android:layout_width="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/filterlay"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="4dp"
-            android:drawableStart="@drawable/ic_filter"
-            android:background="@drawable/circle_red"
-           />
-        <TextView
-            android:id="@+id/nofilter"
-            android:elevation="4dp"
-            android:layout_width="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal"
+
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/circle_red"
+                android:drawableStart="@drawable/ic_filter"
+                android:elevation="4dp"
+                android:padding="4dp" />
+
+            <TextView
+                android:id="@+id/nofilter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/shape_itemfilterno"
+                android:elevation="4dp"
+                android:fontFamily="@font/roboto_light"
+                android:padding="4dp"
+                android:text="No Filter"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/high"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/shape_itemfilterhigh"
+                android:elevation="4dp"
+                android:fontFamily="@font/roboto_light"
+                android:padding="4dp"
+                android:text="High"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/mid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/shape_itemfiltermid"
+                android:elevation="4dp"
+                android:fontFamily="@font/roboto_light"
+                android:padding="4dp"
+                android:text="Mid"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/low"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/shape_itemfilterlow"
+                android:elevation="4dp"
+                android:fontFamily="@font/roboto_light"
+                android:padding="4dp"
+                android:text="Low"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/datewise"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/shape_searchdatewise"
+                android:elevation="4dp"
+                android:fontFamily="@font/roboto_light"
+                android:padding="4dp"
+                android:text="Date wise"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/filterdatelay"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="4dp"
-            android:padding="4dp"
-            android:text="No Filter"
-            android:layout_gravity="center"
-            android:textColor="@color/black"
-            android:fontFamily="@font/roboto_light"
-            android:background="@drawable/shape_itemfilterno"
-            />
-        <TextView
-            android:id="@+id/high"
-            android:elevation="4dp"
-            android:layout_width="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/filterlay"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:background="@color/maincolorshadow"
+                app:cardElevation="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/maincolorshadow"
+                    android:orientation="horizontal">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:layout_weight="1"
+                        android:background="@color/maincolorshadow"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="5dp"
+                                android:background="@color/maincolorshadow"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:fontFamily="@font/roboto_light"
+                                    android:gravity="center"
+                                    android:text="From :"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp">
+
+                                </TextView>
+
+
+                                <TextView
+                                    android:id="@+id/startdate"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@color/maincolorshadow"
+                                    android:fontFamily="@font/roboto_light"
+                                    android:gravity="center"
+                                    android:inputType="number"
+                                    android:text=""
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                        <ImageView
+                            android:id="@+id/selectst"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:background="@color/white"
+                            android:backgroundTint="@color/white"
+                            android:elevation="5dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/ic_down"
+                            app:tint="@color/maincolor">
+
+                        </ImageView>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="3dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/maincolor" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:layout_weight="1"
+                        android:background="@color/maincolorshadow"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="5dp"
+                                android:background="@color/maincolorshadow"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:fontFamily="@font/roboto_light"
+                                    android:gravity="center"
+                                    android:text="To :"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp">
+
+                                </TextView>
+
+
+                                <TextView
+                                    android:id="@+id/enddate"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@color/maincolorshadow"
+                                    android:fontFamily="@font/roboto_light"
+                                    android:gravity="center"
+                                    android:inputType="number"
+                                    android:text=""
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                        <ImageView
+                            android:id="@+id/selectend"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:background="@color/white"
+                            android:backgroundTint="@color/white"
+                            android:elevation="5dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/ic_down"
+                            app:tint="@color/maincolor">
+
+                        </ImageView>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/stylemain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filterdatelaymain">
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="4dp"
-            android:padding="4dp"
-            android:text="High"
-            android:layout_gravity="center"
-            android:textColor="@color/white"
-            android:fontFamily="@font/roboto_light"
-            android:background="@drawable/shape_itemfilterhigh"
-            />
-        <TextView
-            android:id="@+id/mid"
-            android:elevation="4dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="4dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="4dp"
-            android:text="Mid"
-            android:layout_gravity="center"
-            android:textColor="@color/white"
-            android:fontFamily="@font/roboto_light"
-            android:background="@drawable/shape_itemfiltermid"
-            />
-        <TextView
-            android:id="@+id/low"
-            android:elevation="4dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="4dp"
-            android:text="Low"
-            android:layout_gravity="center"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="4dp"
-            android:textColor="@color/white"
-            android:fontFamily="@font/roboto_light"
-            android:background="@drawable/shape_itemfilterlow"
-            />
+            android:layout_margin="10dp"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="4dp"
+                android:elevation="4dp"
+                android:fontFamily="@font/roboto_light"
+                android:padding="4dp"
+                android:text="Select Style"
+                android:textSize="18sp"
+                android:textColor="@color/black" />
+
+
+            <TextView
+         android:id="@+id/stylelist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/shape_searchdatewise"
+                android:elevation="4dp"
+                android:fontFamily="@font/roboto_light"
+                android:padding="4dp"
+                android:drawableStart="@drawable/ic_list"
+                android:text="List"
+                android:textColor="@color/white" />
+            <TextView
+                android:id="@+id/stylegrid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/shape_searchdatewise"
+                android:elevation="4dp"
+                android:fontFamily="@font/roboto_light"
+                android:padding="4dp"
+                android:text="Grid"
+                android:drawableStart="@drawable/ic_grid"
+                android:textColor="@color/white" />
+        </LinearLayout>
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/allnote"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toTopOf="@+id/addnotebtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/filterlay"/>
+        app:layout_constraintTop_toBottomOf="@+id/stylemain" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addnotebtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:layout_marginBottom="5dp"
         android:layout_marginEnd="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="5dp"
         android:backgroundTint="@color/maincolor"
-        android:src="@drawable/ic_add"/>
-
+        android:clickable="true"
+        android:src="@drawable/ic_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

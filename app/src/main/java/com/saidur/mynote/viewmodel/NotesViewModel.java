@@ -15,12 +15,23 @@ import java.util.List;
 
 public class NotesViewModel extends AndroidViewModel {
     public NoteRepo noteRepo;
-
     public LiveData<List<Notes>> getAllNotes;
+    public LiveData<List<Notes>> prtnote;
+    public LiveData<List<Notes>> gethinote;
+    public LiveData<List<Notes>> getmidnote;
+    public LiveData<List<Notes>> getlownote;
+    public LiveData<List<Notes>> datenote;
+
     public NotesViewModel(@NonNull Application application) {
         super(application);
          noteRepo=new NoteRepo(application);
          getAllNotes=noteRepo.getAllnotes;
+         prtnote=noteRepo.getPrtywiseList;
+         datenote=noteRepo.getDatewiseList;
+
+        gethinote=noteRepo.getHiList;
+        getmidnote=noteRepo.getMidList;
+        getlownote=noteRepo.getLowList;
     }
 
     public void insertNote(Notes notes)
@@ -35,4 +46,9 @@ public class NotesViewModel extends AndroidViewModel {
     {
         noteRepo.deleteNotes(ids);
     }
+
+   /* public void srchprtywiseNote(String code)
+    {
+        noteRepo.searpriorityNotes(code);
+    }*/
 }

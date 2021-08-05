@@ -3,6 +3,7 @@ package com.saidur.mynote.view.adapters;
 import android.app.Application;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.saidur.mynote.R;
 import com.saidur.mynote.entity.Notes;
 import com.saidur.mynote.view.DeleteListener;
+import com.saidur.mynote.view.activity.NoteviewActivity;
 import com.saidur.mynote.viewmodel.NotesViewModel;
 
 import java.text.SimpleDateFormat;
@@ -60,8 +62,11 @@ public class AllnoteAdapter extends RecyclerView.Adapter<AllnoteAdapter.Anvh> {
         NotesViewModel nvm = new NotesViewModel(application);
         if (noteList != null) {
             holder.ntitle.setText(notes.notesTitle);
-            holder.nsubtitle.setText(notes.notesSubtitle);
-            holder.nnote.setText(notes.notes);
+            holder.ntitle.getSelectionStart();
+           // holder.nsubtitle.setText(notes.notesSubtitle);
+            //holder.nnote.setText(notes.notes);
+            holder.nsubtitle.setVisibility(View.GONE);
+            holder.nnote.setVisibility(View.GONE);
             holder.date.setText(notes.notesDate);
             final String pt = notes.priority;
             //check priority
@@ -166,6 +171,16 @@ public class AllnoteAdapter extends RecyclerView.Adapter<AllnoteAdapter.Anvh> {
 
                 d.show();
 
+            });
+            //for fullview
+            holder.delt.setOnClickListener(v -> {
+                Intent fullview=new Intent(c.getApplicationContext(), NoteviewActivity.class);
+                fullview.putExtra("Title",notes.notesTitle);
+                fullview.putExtra("Subtitle",notes.notesSubtitle);
+                fullview.putExtra("Notes",notes.notes);
+                fullview.putExtra("Date",notes.notesDate);
+                fullview.putExtra("Priority",notes.priority);
+                c.startActivity(fullview);
             });
 
             //for delete note
